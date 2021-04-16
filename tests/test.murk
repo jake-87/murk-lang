@@ -1,0 +1,4 @@
+int:$1 = 10;
+io:print:{int:$1};
+int:$2 = add:{$1,10};
+io:print:{int:$2};
