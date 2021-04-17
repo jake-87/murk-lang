@@ -1,0 +1,69 @@
+/*#include <stdio.h>
+#include <stdlib.h>
+#include "../include/tokeniser.h"
+char ** tokenise(char * buf,int size)
+{
+	if (!buf)
+	{
+		fprintf(stderr,"ERROR: buffer not imported correctly!\n");
+		exit(1);
+	}
+	// tokenlist : int[] : INT, float[] : FLT, char[] : CHR, string[] : STR, print() : PRINT, scan() : SCAN, fprint() : FPRINT, fscan() : FSCAN, convert() : CONVERT, $memoryadress : MEMADR, @functiondef :FUNCDEF
+	char ** tokbuf = calloc(1,sizeof(char) * size);
+	int i = 0;
+	char currentchar;
+	while (buf[i] != '\0')
+	{
+		currentchar = buf[i];
+		switch(currentchar)
+		{
+			case 'i':
+				if (buf[i + 1] == 'n' && buf[i + 2] == 't')
+				{
+					tokbuf[i] = "INT";
+				}
+				break;
+			case 'f':
+				if (buf[i + 1] == 'l' && buf[i + 3] == 'a')
+				{
+					tokbuf[i] = "FLT";
+				}
+				else if (buf[i + 1] == 'p')
+				{
+					tokbuf[i] = "FPRINT";
+				}
+				else if (buf[i + 1] == 's')
+				{
+					tokbuf[i] = "FSCAN";
+				}
+				break;
+			case 'c':
+				if (buf[i + 1] == 'o')
+				{
+					tokbuf[i] = "CONVERT";
+				}
+				else if (buf[i + 1] == 'h')
+				{
+					tokbuf[i] = "CHR";
+				}
+				break;
+			case 'p':
+				if (buf[i + 1] == 'p')
+				{
+					tokbuf[i] = "PRINT";
+				}
+				break;
+			case 's':
+				if (buf[i + 1] == 'c')
+				{
+					tokbuf[i] = "SCAN";
+				}
+				else if (buf[i + 1] == 't')
+				{
+					tokbuf[i] = "STRING";
+				}
+				break;
+
+		}
+	}
+} */
