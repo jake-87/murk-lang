@@ -7,7 +7,7 @@ char ** tokenise(char * buf, int size, char *** args)
 	printf("In tokeniser\n");
 	int i = 0,tmp2 = 0,j;
 	char c,n,k,tmp;
-	char ** tokens = malloc(sizeof(char) * size);
+	char ** tokens = malloc(sizeof(* tokens) * size);
 	if (!tokens)
 	{
 		printf("malloc failed\n");
@@ -38,11 +38,13 @@ char ** tokenise(char * buf, int size, char *** args)
 						tmp = buf[tmp2 + 3];
 						if (tmp == '$')
 						{
-							tmp2 = 0;
+							tmp2 = -1;
 							continue;
 						}
-						* args[i][tmp2] = buf[j];
+						printf("args[i][tmp] is %c\n",&args[i][tmp2]);
+						printf("buf[j] is %c\n",buf[j]);
 						i++;
+						tmp2++;
 					}
 				}
 			default:
