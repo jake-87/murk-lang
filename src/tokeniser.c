@@ -2,60 +2,49 @@
 #include <string.h>
 #include <stdlib.h>
 #include "../include/tokeniser.h"
-char ** tokenise(char * buf, int size, char *** args)
+char ** tokenise(char * buf, int size, char (* args)[100][100])
 {
 	printf("In tokeniser\n");
-	int i = 0,tmp2 = 0,j;
-	char c,n,k,tmp;
+	int i = 0;
+	char c;
+	int indextmp = 0;
+	int indexer = 0;
 	char ** tokens = malloc(sizeof(* tokens) * size);
 	if (!tokens)
 	{
-		printf("malloc failed\n");
+		printf("calloc failed\n");
 		exit(1);
 	}
 	printf("Malloc did the thing\n");
+	for (i = 0; i < size; i++)
+	{
+		printf("buf[i] is %c\n",buf[i]);
+	}
 	// Possible tokens: int[], float[], char[], string[], print[], scan[], $memadr$
+	i = 0;
 	while (i < size)
 	{
-		printf("in while loop\n");
 		c = buf[i];
-		n = buf[i + 1];
-		k = buf[i + 2];
-		printf("var alloc did the thing, i is %d\n",i);
 		switch (c)
 		{
 			case '$':
-				printf("case works");
-				if (k == 'x')
+				if (buf[i + 2] == 'x')
 				{
-					printf("in k function");
-					tokens[i] = "MEMADR";
-					j = i + 2 + 1;
-					tmp2 = 0;
-					printf("var alloc did the thing");
-					while (tmp2 != -1)
+					indextmp = 0;
+					i = i + 3;
+					int oldi = i;
+					while (buf[i] != '$')
 					{
-						tmp = buf[tmp2 + 3];
-						if (tmp == '$')
-						{
-							tmp2 = -1;
-							continue;
-						}
-						printf("args[i][tmp] is %c\n",&args[i][tmp2]);
-						printf("buf[j] is %c\n",buf[j]);
+						(* args)[oldi][indextmp] = buf[i];
+						indextmp++;
+						indexer++;
 						i++;
-						tmp2++;
 					}
 				}
 			default:
-				printf("Defaulted to i++.");
+				printf("Defaulting to i++;\n");
 				i++;
 		}
-	}
-	for (i = 0; i <= tmp2; i++)
-	{
-		printf("Attempting print of args\n");
-		printf("%s\n",args[tmp2]);
 	}
 	return tokens;
 }

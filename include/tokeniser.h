@@ -1,2 +1,2 @@
 #define MURK_TOKENISER_H
-char ** tokenise(char * buf, int size, char *** args);
+char ** tokenise(char * buf, int size, char (* args)[100][100]);

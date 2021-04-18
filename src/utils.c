@@ -14,7 +14,7 @@ char * readFromFile(char * filePath, int * size)
 	* size = ftell( file );
 	printf("%d\n",* size);
 	rewind(file);
-	char * buf = calloc(1,* size + 1);
+	char * buf = malloc((* size) + 1);
 	if (!buf)
 	{
 		fclose(file);

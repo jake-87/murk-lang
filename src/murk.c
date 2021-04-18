@@ -6,7 +6,6 @@
 int main(int argc, char ** argv)
 {
 	int size;
-	char ** args;
 	if (argc < 3)
 	{
 		printf("Too few args. At least 3 required.\n");
@@ -16,7 +15,22 @@ int main(int argc, char ** argv)
 	{
 		char * buf = readFromFile(argv[2],&size);
 		printf("%s\n",buf);
-		tokenise(buf, size, &args);
+		char stringarglist[100][100];
+		for (int i = 0; i < 100; i++)
+		{
+			for (int j = 0; j < 100; j++)
+			{
+				stringarglist[i][j] = 0;
+			}
+		}
+		tokenise(buf, size, &stringarglist);
+		for (int i = 0; i < size; i++)
+		{
+			for (int j = 0; j < size; j++)
+			{
+				printf("%d;%d : %c\n",i,j,stringarglist[i][j]);
+			}
+		}
 		free(buf);
 	}
 	return 0;
